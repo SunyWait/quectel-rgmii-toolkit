@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define constants
-GITUSER="iamromulan"
+GITUSER="SunyWait"
 GITTREE="development"
 DIR_NAME="tailscale"
 SERVICE_FILE="/lib/systemd/system/install_tailscale.service"
@@ -48,7 +48,7 @@ cat <<EOF > "$TMP_SCRIPT"
 
 export HOME=/usrdata/root
 export PATH=/bin:/sbin:/usr/bin:/usr/sbin:/opt/bin:/opt/sbin:/usrdata/root/bin
-GITUSER="iamromulan"
+GITUSER="SunyWait"
 GITTREE="development"
 TAILSCALE_DIR="/usrdata/tailscale/"
 TAILSCALE_SYSD_DIR="/usrdata/tailscale/systemd"
@@ -85,8 +85,8 @@ install_update_tailscale() {
         rm -rf /usrdata/tailscale_1.66.4_arm
         echo "Downloading systemd files..."
         cd "$TAILSCALE_SYSD_DIR"
-        wget https://raw.githubusercontent.com/$GITUSER/quectel-rgmii-toolkit/main/tailscale/systemd/tailscaled.service
-        wget https://raw.githubusercontent.com/$GITUSER/quectel-rgmii-toolkit/main/tailscale/systemd/tailscaled.defaults
+        wget https://raw.gitmirror.com/$GITUSER/quectel-rgmii-toolkit/main/tailscale/systemd/tailscaled.service
+        wget https://raw.gitmirror.com/$GITUSER/quectel-rgmii-toolkit/main/tailscale/systemd/tailscaled.defaults
         sleep 2s
         echo "Setting Permissions..."
         chmod +x "$TAILSCALE_DIR/tailscaled" "$TAILSCALE_DIR/tailscale"
