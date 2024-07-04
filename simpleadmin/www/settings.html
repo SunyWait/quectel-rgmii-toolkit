@@ -19,9 +19,7 @@
       <div class="container my-4" x-data="simpleSettings()">
         <nav class="navbar navbar-expand-lg mt-2">
           <div class="container-fluid">
-            <a class="navbar-brand" href="/"
-              ><span class="mb-0 h4">Simple Admin</span></a
-            >
+
             <button
               class="navbar-toggler"
               type="button"
@@ -36,33 +34,43 @@
             <div class="collapse navbar-collapse" id="navbarText">
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                  <a class="nav-link" href="/">Home</a>
+                  <a class="nav-link" href="/">首页</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/network.html">Simple Network</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/scanner.html">Simple Scan</a>
+                  <a class="nav-link" href="/network.html">网络</a>
                 </li>
                 <li class="nav-item">
                   <a
-                    class="nav-link active"
-                    href="/settings.html"
-                    aria-current="page"
-                    >Simple Settings</a
+                          class="nav-link active"
+                          href="/scanner.html"
+                          aria-current="page"
+                  >扫频</a
                   >
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/sms.html">SMS</a>
+
+                  <a
+                          class="nav-link active"
+                          href="/settings.html"
+                          aria-current="page"
+                  >设置</a
+                  >
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/console">Console</a>
+                  <a class="nav-link" href="/sms.html">信息</a>
                 </li>
+                <!--                <li class="nav-item">-->
+                <!--                  <a class="nav-link" href="/console">Console</a>-->
+                <!--                </li>-->
                 <li class="nav-item">
                   <a class="nav-link" href="/deviceinfo.html"
-                    >Device Information</a
+                  >设备</a
                   >
                 </li>
+
+
+
+
               </ul>
               <span class="navbar-text">
                 <button class="btn btn-link text-reset" id="darkModeToggle">
@@ -76,8 +84,50 @@
         <div class="row mt-5 mb-4">
           <div class="col">
             <div class="card">
-              <div class="card-header">AT Terminal</div>
+              <div class="card-header">AT终端</div>
               <div class="card-body">
+                <div class="col-md-4 mb-3">
+                  <label for="exampleInputEmail1" class="form-label"
+                  >AT 命令</label
+                  >
+                  <input
+                          type="text"
+                          class="form-control"
+                          id="atCommandInput"
+                          placeholder=""
+                          aria-describedby="atCommandInput"
+                          x-model="atcmd"
+                          @keydown.enter="sendATCommand()"
+                  />
+
+                  <div id="atCommandInputHelper" class="form-text">
+                    多个命令用逗号（,）分隔多个命令。
+                  </div>
+                  <div>
+
+                    <div
+                            class="d-grid gap-2 d-md-flex justify-content-md-start"
+                    >
+                      <button
+                              class="btn btn-primary me-md-2"
+                              type="button"
+                              @click="sendATCommand()"
+                              :disabled="isLoading"
+                      >
+                        发送
+                      </button>
+                      <button
+                              class="btn btn-danger"
+                              type="button"
+                              @click="clearResponses()"
+                              :disabled="isClean"
+                      >
+                        清除
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
                 <div class="card-text">
                   <div class="form-floating mb-4">
                     <!-- At commands output here -->
@@ -92,45 +142,7 @@
                     <label for="floatingTextarea">ATI</label>
                     </textarea>
                   </div>
-                  <div>
-                    <div class="col-md-4 mb-3">
-                      <label for="exampleInputEmail1" class="form-label"
-                        >AT Command</label
-                      >
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="atCommandInput"
-                        placeholder="ATI"
-                        aria-describedby="atCommandInput"
-                        x-model="atcmd"
-                        @keydown.enter="sendATCommand()"
-                      />
-                      <div id="atCommandInputHelper" class="form-text">
-                        Seperate multiple commands with comma (,).
-                      </div>
-                    </div>
-                    <div
-                      class="d-grid gap-2 d-md-flex justify-content-md-start"
-                    >
-                      <button
-                        class="btn btn-primary me-md-2"
-                        type="button"
-                        @click="sendATCommand()"
-                        :disabled="isLoading"
-                      >
-                        Submit
-                      </button>
-                      <button
-                        class="btn btn-danger"
-                        type="button"
-                        @click="clearResponses()"
-                        :disabled="isClean"
-                      >
-                        Clear
-                      </button>
-                    </div>
-                  </div>
+
                 </div>
               </div>
             </div>
@@ -139,14 +151,14 @@
         <div class="row">
           <div class="col">
             <div class="card">
-              <div class="card-header">One Click Utilities</div>
+              <div class="card-header">实用工具</div>
               <div class="card-body">
                 <div class="card-text">
                   <div class="table-responsive">
                     <table class="table">
                       <tbody>
                         <tr>
-                          <th scope="row">Reboot</th>
+                          <th scope="row">重启设备</th>
                           <td>
                             <button
                               type="submit"
@@ -154,12 +166,12 @@
                               @click="showRebootModal()"
                               :disabled="isLoading"
                             >
-                              Reboot
+                              重启
                             </button>
                           </td>
                         </tr>
                         <tr>
-                          <th scope="row">Reset AT Commands Settings</th>
+                          <th scope="row">重置AT命令设置</th>
                           <td>
                             <button
                               type="submit"
@@ -167,20 +179,20 @@
                               @click="resetATCommands()"
                               :disabled="isLoading"
                             >
-                              Reset
+                              重置
                             </button>
                           </td>
                         </tr>
                         <tr>
-                          <th scope="row">IP Passthrough</th>
+                          <th scope="row">IP直通</th>
                           <td>
                             <select
                               class="form-select"
                               id="ipPassModeSelect"
                               x-model="ipPassMode"
                             >
-                              <option selected>Passthrough Mode</option>
-                              <option value="ETH">ETH</option>
+                              <option selected>直通模式</option>
+                              <option value="ETH">ETH模式</option>
                               <option value="USB">USB (ECM/RNDIS)</option>
                             </select>
                           </td>
@@ -192,7 +204,7 @@
                               x-show="ipPassStatus === false"
                               :disabled="isLoading"
                             >
-                              Enable
+                              启用
                             </button>
                             <button
                               type="submit"
@@ -201,12 +213,12 @@
                               x-show="ipPassStatus === true"
                               :disabled="isLoading"
                             >
-                              Disable
+                              停用
                             </button>
                           </td>
                         </tr>
                         <tr>
-                          <th scope="row">USB Modem Protocol</th>
+                          <th scope="row">USB调制解调器协议</th>
                           <td>
                             <select
                               class="form-select"
@@ -218,7 +230,7 @@
                                 x-text="currentUsbNetMode"
                               ></option>
                               <option value="RMNET">RMNET</option>
-                              <option value="ECM">ECM (Recommended)</option>
+                              <option value="ECM">ECM (推荐)</option>
                               <option value="MBIM">MBIM</option>
                               <option value="RNDIS">RNDIS</option>
                             </select>
@@ -235,7 +247,7 @@
                           </td>
                         </tr>
                         <tr>
-                          <th scope="row">Onboard DNS Proxy</th>
+                          <th scope="row">板载DNS代理</th>
                           <td>
                             <button
                               type="submit"
@@ -244,7 +256,7 @@
                               x-show="DNSProxyStatus === false"
                               :disabled="isLoading"
                             >
-                              Enable
+                              启用
                             </button>
                             <button
                               type="submit"
@@ -253,7 +265,7 @@
                               x-show="DNSProxyStatus === true"
                               :disabled="isLoading"
                             >
-                              Disable
+                              停用
                             </button>
                           </td>
                         </tr>
@@ -266,10 +278,10 @@
           </div>
           <div class="col">
             <div class="card mb-3">
-              <div class="card-header">TTL and Network Scan Settings</div>
+              <div class="card-header">TTL和网络扫描设置</div>
               <div class="card-body">
                 <label for="TTLState" class="form-label"
-                  >TTL State and Value</label
+                  >TTL状态和值</label
                 >
                 <div class="row">
                   <div class="col">
@@ -277,14 +289,14 @@
                       class="p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3"
                       x-show="ttlStatus === true"
                     >
-                      TTL is Active
+                      TTL处于活动状态
                     </div>
 
                     <div
                       class="p-3 text-danger-emphasis bg-danger-subtle border border-danger-subtle rounded-3"
                       x-show="ttlStatus === false"
                     >
-                      TTL is Inactive
+                      TTL处于非活动状态
                     </div>
                   </div>
                   <div class="col">
@@ -304,7 +316,7 @@
                       x-model="newTTL"
                     />
                     <div id="ttlValueHelper" class="form-text">
-                      Set TTL Value to 0 to disable.
+                      将TTL值设置为0以禁用。
                     </div>
                   </div>
                   <div class="d-grid gap-1">
@@ -313,7 +325,7 @@
                       type="button"
                       @click="setTTL()"
                     >
-                      Update
+                      更新
                     </button>
                   </div>
                 </div>

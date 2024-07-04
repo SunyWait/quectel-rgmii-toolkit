@@ -28,9 +28,7 @@
       <div class="container my-4" x-data="cellScanner()">
         <nav class="navbar navbar-expand-lg mt-2">
           <div class="container-fluid">
-            <a class="navbar-brand" href="/"
-              ><span class="mb-0 h4">Simple Admin</span></a
-            >
+
             <button
               class="navbar-toggler"
               type="button"
@@ -45,31 +43,31 @@
             <div class="collapse navbar-collapse" id="navbarText">
               <ul class="navbar-nav me-auto mb-2 ml-4 mb-lg-0">
                 <li class="nav-item">
-                  <a class="nav-link" href="/">Home</a>
+                  <a class="nav-link" href="/">首页</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/network.html">Simple Network</a>
+                  <a class="nav-link" href="/network.html">网络</a>
                 </li>
                 <li class="nav-item">
                   <a
                     class="nav-link active"
                     href="/scanner.html"
                     aria-current="page"
-                    >Simple Scan</a
+                    >扫频</a
                   >
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/settings.html">Simple Settings</a>
+                  <a class="nav-link" href="/settings.html">设置</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/sms.html">SMS</a>
+                  <a class="nav-link" href="/sms.html">信息</a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/console">Console</a>
-                </li>
+                <!--                <li class="nav-item">-->
+                <!--                  <a class="nav-link" href="/console">Console</a>-->
+                <!--                </li>-->
                 <li class="nav-item">
                   <a class="nav-link" href="/deviceinfo.html"
-                    >Device Information</a
+                  >设备</a
                   >
                 </li>
               </ul>
@@ -85,10 +83,10 @@
         <div class="row mt-3 mb-4">
           <div class="col">
             <div class="card">
-              <div class="card-header">Live Signal</div>
+              <div class="card-header">实时信号</div>
               <div class="card-body">
                 <div class="row mt-2 mb-2">
-                  <p>Signal Graph</p>
+                  <p>信号图</p>
                   <div>
                     <canvas id="myChart"></canvas>
                   </div>
@@ -101,19 +99,19 @@
         <div class="row mt-3 mb-4">
           <div class="col">
             <div class="card">
-              <div class="card-header">Cell Scanner</div>
+              <div class="card-header">Cell 扫描</div>
               <div class="card-body">
                 <div class="card-text">
                   <table class="table">
                     <thead>
                       <tr>
-                        <th scope="col">Network</th>
-                        <th scope="col">Provider</th>
+                        <th scope="col">网络</th>
+                        <th scope="col">运营商</th>
                         <th scope="col">Band</th>
-                        <th scope="col">Frequency</th>
+                        <th scope="col">频率</th>
                         <th scope="col">PCI</th>
                         <th scope="col">RSRP</th>
-                        <th scope="col">Signal</th>
+                        <th scope="col">信号</th>
                       </tr>
                     </thead>
                     <tbody id="cellScanTableBody">
@@ -124,22 +122,20 @@
                     <div class="col-md-4 mb-3">
                       <div class="form-group">
                         <label for="exampleFormControlSelect1"
-                          >Choose Scan Mode</label
+                          >选择扫描模式</label
                         >
                         <select
                           class="form-select"
                           id="cellSelect"
                           x-model="cellScanMode"
                         >
-                          <option selected>Select Scan Mode</option>
-                          <option value="Full Scan">Full Scan</option>
-                          <option value="LTE Only">LTE Only</option>
-                          <option value="NR5G Only">NR5G Only</option>
+                          <option selected>请选择扫描模式</option>
+                          <option value="Full Scan">全扫描</option>
+                          <option value="LTE Only">仅LTE </option>
+                          <option value="NR5G Only">仅NR5G</option>
                         </select>
                         <div id="cellSelectHelper" class="form-text">
-                          Cell Scanner will scan all LTE and NR5G-SA cells in
-                          your area. Scanning might disconnect your network and
-                          take some minutes to complete.
+                          蜂窝扫描仪将扫描您所在地区的所有LTE和NR5G-SA蜂窝。扫描可能会断开网络连接，并需要几分钟才能完成
                         </div>
                       </div>
                     </div>
@@ -151,7 +147,7 @@
                         type="button"
                         x-on:click="startCellScan()"
                         :disabled="isLoading === true || cellScanMode === 'Unspecified' || cellScanMode === 'Select Scan Mode'"
-                        x-text="isCellScanning ? 'Scanning... Please wait.' : 'Start Cell Scan'"
+                        x-text="isCellScanning ? '扫描这... 请稍等.' : '开始扫描'"
                       ></button>
                       <button
                         class="btn btn-danger"
@@ -159,7 +155,7 @@
                         x-on:click="clearTableRowsBodyCellScan()"
                         :disabled="isLoading === true || resultDoneCell === false"
                       >
-                        Clear
+                        清除
                       </button>
                     </div>
                   </div>
@@ -172,7 +168,7 @@
         <div class="row">
           <div class="col">
             <div class="card">
-              <div class="card-header">LTE and NR5G Neighbourcell Scan</div>
+              <div class="card-header">LTE和NR5G邻区单元扫描</div>
               <div class="card-body">
                 <table class="table">
                   <thead>
@@ -192,21 +188,20 @@
                   <div class="col-md-4 mb-3">
                     <div class="form-group">
                       <label for="exampleFormControlSelect1"
-                        >Choose Scan Mode</label
+                        >选择扫描模式</label
                       >
                       <select
                         class="form-select"
                         id="neighbourCellSelect"
                         x-model="neighbourCellsScanMode"
                       >
-                        <option selected>Select Scan Mode</option>
+                        <option selected>请选择扫描模式</option>
                         <option value="LTE and NR5G">LTE and NR5G</option>
                         <option value="LTE">LTE</option>
                         <option value="NR5G">NR5G</option>
                       </select>
                       <div id="neighbourCellSelectHelper" class="form-text">
-                        Neighbourcell scan will only scan LTE or NR5G cells from
-                        your network provider.
+                        邻区单元扫描只会扫描来自网络提供商的LTE或NR5G蜂窝。
                       </div>
                     </div>
                   </div>

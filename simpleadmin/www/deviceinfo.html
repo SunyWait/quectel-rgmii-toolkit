@@ -23,9 +23,7 @@
       <div class="container my-4" x-data="fetchDeviceInfo()">
         <nav class="navbar navbar-expand-lg mt-2">
           <div class="container-fluid">
-            <a class="navbar-brand" href="/"
-              ><span class="mb-0 h4">Simple Admin</span></a
-            >
+
             <button
               class="navbar-toggler"
               type="button"
@@ -40,29 +38,37 @@
             <div class="collapse navbar-collapse" id="navbarText">
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                  <a class="nav-link" href="/">Home</a>
+                  <a class="nav-link" href="/">首页</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/network.html">Simple Network</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/scanner.html">Simple Scan</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/settings.html">Simple Settings</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/sms.html">SMS</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/console">Console</a>
+                  <a class="nav-link" href="/network.html">网络</a>
                 </li>
                 <li class="nav-item">
                   <a
-                    class="nav-link active"
-                    href="/deviceinfo.html"
-                    aria-current="page"
-                    >Device Information</a
+                          class="nav-link "
+                          href="/scanner.html"
+                          aria-current="page"
+                  >扫频</a
+                  >
+                </li>
+                <li class="nav-item">
+
+                  <a
+                          class="nav-link active"
+                          href="/settings.html"
+                          aria-current="page"
+                  >设置</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link " href="/sms.html">信息</a>
+                </li>
+                <!--                <li class="nav-item">-->
+                <!--                  <a class="nav-link" href="/console">Console</a>-->
+                <!--                </li>-->
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="/deviceinfo.html"
+                  >设备</a
                   >
                 </li>
               </ul>
@@ -78,26 +84,26 @@
         <div class="row mt-5 gap-3">
           <div class="col">
             <div class="card">
-              <div class="card-header">Device Information</div>
+              <div class="card-header">设备信息</div>
               <div class="card-body">
                 <div class="card-text">
                   <div class="table-responsive">
                     <table class="table">
                       <tbody>
                         <tr>
-                          <th scope="row">Manufacturer</th>
+                          <th scope="row">生产企业</th>
                           <td x-text="manufacturer"></td>
                         </tr>
                         <tr>
-                          <th scope="row">Model Name</th>
+                          <th scope="row">模块名称</th>
                           <td x-text="modelName"></td>
                         </tr>
                         <tr>
-                          <th scope="row">Firmware version</th>
+                          <th scope="row">固件版本</th>
                           <td class="col-md-2" x-text="firmwareVersion"></td>
                         </tr>
                         <tr>
-                          <th scope="row">Phone Number</th>
+                          <th scope="row">电话号码</th>
                           <td class="col-md-2" x-text="phoneNumber"></td>
                         </tr>
                         <tr>
@@ -115,7 +121,7 @@
                               class="form-control"
                               type="text"
                               x-model="newImei"
-                              x-bind:placeholder="imei === '-' ? 'Fetching IMEI...' : imei"
+                              x-bind:placeholder="imei === '-' ? '获取 IMEI...' : imei"
                             />
                           </td>
                           <td>
@@ -124,186 +130,31 @@
                               class="btn btn-primary"
                               @click="openModal()"
                             >
-                              Update
+                              更改
                             </button>
                           </td>
                         </tr>
 
                         <tr>
-                          <th scope="row">LAN IP</th>
+                          <th scope="row">局域网 IP</th>
                           <td class="col-md-2" x-text="lanIp"></td>
                         </tr>
                         <tr>
-                          <th scope="row">WWAN IPv<sup>4</sup></th>
+                          <th scope="row">WWAN IPV4</th>
                           <td class="col-md-2" x-text="wwanIpv4"></td>
                         </tr>
                         <tr>
-                          <th scope="row">WWAN IPv<sup>6</sup></th>
+                          <th scope="row">WWAN IPV6</th>
                           <td class="col-md-2" x-text="wwanIpv6"></td>
                         </tr>
-                        <tr>
-                          <th scope="row">Simple Admin Version</th>
-                          <td class="col-md-2">SimpleAdminRev-Alpha-0.9</td>
-                        </tr>
-                        <tr>
-                          <th>Project Contributors</th>
-                          <td>
-                            <!-- Button trigger modal -->
-                            <p
-                              type="button"
-                              class="link-info link-opacity-50-hover link-offset-2"
-                              data-bs-toggle="modal"
-                              data-bs-target="#staticBackdrop"
-                            >
-                              Show Contributors
-                            </p>
 
-                            <!-- Modal -->
-                            <div
-                              class="modal fade"
-                              id="staticBackdrop"
-                              data-bs-backdrop="static"
-                              data-bs-keyboard="false"
-                              tabindex="-1"
-                              aria-labelledby="staticBackdropLabel"
-                              aria-hidden="true"
-                            >
-                              <div class="modal-dialog modal-dialog-centered">
-                                <div class="modal-content">
-                                  <div class="modal-header">
-                                    <h1
-                                      class="modal-title fs-5"
-                                      id="staticBackdropLabel"
-                                    >
-                                      Contributors
-                                    </h1>
-                                    <button
-                                      type="button"
-                                      class="btn-close"
-                                      data-bs-dismiss="modal"
-                                      aria-label="Close"
-                                    ></button>
-                                  </div>
-                                  <div class="modal-body">
-                                    <table>
-                                      <tbody>
-                                        <tr>
-                                          <th>
-                                            RGMII Toolkit and Documentation
-                                          </th>
-                                          <td class="col-md-2">
-                                            <a
-                                              href="https://github.com/SunyWait"
-                                              target="_blank"
-                                              >SunyWait</a
-                                            >
-                                          </td>
-                                        </tr>
 
-                                        <tr>
-                                          <th>Simple Admin 2.0</th>
-                                          <td class="col-md-2">
-                                            <a
-                                              href="https://github.com/dr-dolomite"
-                                              target="_blank"
-                                              >dr-dolomite</a
-                                            >
-                                          </td>
-                                        </tr>
-
-                                        <tr>
-                                          <th>SMS Feature</th>
-                                          <td class="col-md-2">
-                                            <a
-                                              href="https://github.com/snjzb"
-                                              target="_blank"
-                                              >snjzb</a
-                                            >
-                                          </td>
-                                        </tr>
-
-                                        <tr>
-                                          <th>Original Simple Admin</th>
-                                          <td class="col-md-2">
-                                            <a
-                                              href="https://github.com/aesthernr"
-                                              target="_blank"
-                                              >aesthernr</a
-                                            >
-                                          </td>
-                                        </tr>
-
-                                        <tr>
-                                          <th>Original Socat Bridge</th>
-                                          <td class="col-md-2">
-                                            <a
-                                              href="https://github.com/natecarlson"
-                                              target="_blank"
-                                              >natecarlson</a
-                                            >
-                                          </td>
-                                        </tr>
-
-                                        <tr>
-                                          <th>Original Simple Admin Fixes</th>
-                                          <td class="col-md-2">
-                                            <a
-                                              href="https://github.com/rbflurry/"
-                                              target="_blank"
-                                              >rbflurry</a
-                                            >
-                                          </td>
-                                        </tr>
-
-                                        <tr>
-                                          <th>SA Parsing Patch</th>
-                                          <td class="col-md-2">
-                                            <a
-                                              href="https://github.com/tarunVreddy"
-                                              target="_blank"
-                                              >tarunVreddy</a
-                                            >
-                                          </td>
-                                        </tr>
-                                      </tbody>
-                                    </table>
-                                  </div>
-                                  <div class="modal-footer">
-                                    <button
-                                      type="button"
-                                      class="btn btn-secondary"
-                                      data-bs-dismiss="modal"
-                                    >
-                                      Close
-                                    </button>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </td>
-                        </tr>
                       </tbody>
                     </table>
                   </div>
                 </div>
               </div>
-              <div class="card-footer">
-                Visit our
-                <a
-                  href="https://github.com/SunyWait/quectel-rgmii-toolkit/tree/development"
-                  target="_blank"
-                  class="text-reset"
-                  >repository</a
-                >
-                or
-                <a
-                  href="https://github.com/SunyWait/quectel-rgmii-configuration-notes.git"
-                  target="_blank"
-                  class="text-reset"
-                  >documentation</a
-                >
-                for more information. All rights reserved. 2024
-              </div>
+
             </div>
           </div>
         </div>

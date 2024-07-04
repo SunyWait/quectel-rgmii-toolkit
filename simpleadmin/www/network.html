@@ -26,9 +26,7 @@
       <div class="container my-4" x-data="cellLocking()">
         <nav class="navbar navbar-expand-lg mt-2">
           <div class="container-fluid">
-            <a class="navbar-brand" href="/"
-              ><span class="mb-0 h4">Simple Admin</span></a
-            >
+
             <button
               class="navbar-toggler"
               type="button"
@@ -43,31 +41,32 @@
             <div class="collapse navbar-collapse" id="navbarText">
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                  <a class="nav-link" href="/">Home</a>
+                  <a class="nav-link" href="/">首页</a>
                 </li>
                 <li class="nav-item">
                   <a
                     class="nav-link active"
                     href="network.html"
                     aria-current="page"
-                    >Simple Network</a
+                    >网络</a
                   >
                 </li>
+
                 <li class="nav-item">
-                  <a class="nav-link" href="/scanner.html">Simple Scan</a>
+                  <a class="nav-link" href="/scanner.html">扫频</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/settings.html">Simple Settings</a>
+                  <a class="nav-link" href="/settings.html">设置</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/sms.html">SMS</a>
+                  <a class="nav-link" href="/sms.html">信息</a>
                 </li>
+                <!--                <li class="nav-item">-->
+                <!--                  <a class="nav-link" href="/console">Console</a>-->
+                <!--                </li>-->
                 <li class="nav-item">
-                  <a class="nav-link" href="/console">Console</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="deviceinfo.html"
-                    >Device Information</a
+                  <a class="nav-link" href="/deviceinfo.html"
+                  >设备</a
                   >
                 </li>
               </ul>
@@ -85,7 +84,7 @@
             <div class="card">
               <div class="card-header">
                 <div class="row align-items-center">
-                  <div class="col">Band Locking</div>
+                  <div class="col">频段锁定</div>
                   <div class="col-md-3">
                     <select
                       class="form-select"
@@ -101,7 +100,7 @@
               </div>
               <div class="card-body">
                 <h5 class="card-subtitle" x-show="isGettingBands === true">
-                  Fetching supported bands...
+                  获取支持的频段...
                 </h5>
                 <form id="checkboxForm" x-show="isGettingBands === false">
                   <!-- Checkboxes will be populated here -->
@@ -115,27 +114,27 @@
                       class="btn btn-primary m-2"
                       @click="lockSelectedBands()"
                     >
-                      Lock Bands
+                      锁定
                     </button>
                     <button
                       type="button"
                       class="btn btn-info m-2"
                       id="uncheckAll"
                     >
-                      Uncheck All
+                      解锁全部
                     </button>
                     <button
                       type="button"
                       class="btn btn-danger m-2"
                       @click="resetBandLocking()"
                     >
-                      Reset
+                      重置
                     </button>
                   </div>
                 </div>
               </div>
               <div class="card-footer">
-                <p x-text="'Active bands: ' + bands"></p>
+                <p x-text="'活动频段: ' + bands"></p>
               </div>
             </div>
           </div>
@@ -145,7 +144,7 @@
           <div class="col">
             <form>
               <div class="card">
-                <div class="card-header">Network Utilities</div>
+                <div class="card-header">网络工具</div>
                 <div class="card-body row">
                   <div class="col">
                     <div class="mb-4">
@@ -182,7 +181,7 @@
                     </div> -->
 
                     <div class="mb-4 input-group grid gap-3">
-                      <label for="SIM1" class="form-label"> Change SIM</label>
+                      <label for="SIM1" class="form-label"> 更改SIM卡</label>
                       <div class="form-check form-check-inline">
                         <input
                           class="form-check-input"
@@ -219,7 +218,7 @@
                   <div class="col">
                     <div class="mb-4">
                       <label for="nrModeControl" class="form-label"
-                        >Select Preferred Network</label
+                        >选择首选网络</label
                       >
                       <select
                         class="form-select"
@@ -239,7 +238,7 @@
                     </div>
                     <div class="mb-4">
                       <label for="prefNetwork" class="form-label"
-                        >NR5G Mode Control</label
+                        >NR5G模式控制</label
                       >
                       <select
                         class="form-select"
@@ -264,7 +263,7 @@
                     class="btn btn-primary"
                     @click="saveChanges()"
                   >
-                    Save Changes
+                    保存更改
                   </button>
                 </div>
               </div>
@@ -273,7 +272,7 @@
 
           <div class="col-md-4">
             <div class="card">
-              <div class="card-header">Cell Locking</div>
+              <div class="card-header">Cell 锁定</div>
               <div class="card-body">
                 <select
                   class="form-select"
@@ -404,8 +403,7 @@
                 </div>
               </div>
               <div class="card-footer">
-                Cell Locking only works for the primary cell and is not
-                persistent across reboots.
+                单元锁定仅适用于主单元格，在重新启动时不会持久。.
               </div>
             </div>
           </div>
